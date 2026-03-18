@@ -1,0 +1,10 @@
+services:
+  gesture-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENCV_VIDEOIO_PRIORITY_LIST=V4L2
+    devices:
+      - /dev/video0:/dev/video0
+    restart: unless-stopped
