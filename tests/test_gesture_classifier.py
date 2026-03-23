@@ -1,6 +1,5 @@
 """Tests for the rule-based gesture classifier."""
 
-import pytest
 from ai_engine.gesture_classifier import classify_gesture, GESTURES
 
 

@@ -1,12 +1,9 @@
 """Tests for the training pipeline (data loading and model export)."""
 
 import csv
-import tempfile
 import os
 import pytest
-import numpy as np
 
-from ai_engine.gesture_classifier import GESTURES
 from ai_engine.training.train import load_csvs
 from ai_engine.training.export_onnx import GestureNet
 
@@ -47,7 +44,7 @@ class TestGestureNet:
         assert out.shape == (4, 6)
 
     def test_export_onnx(self, tmp_path):
-        onnx = pytest.importorskip("onnx")
+        pytest.importorskip("onnx")
         from ai_engine.training.export_onnx import export_onnx
         model = GestureNet(num_classes=6)
         path = str(tmp_path / "test.onnx")

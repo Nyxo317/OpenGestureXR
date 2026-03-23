@@ -14,7 +14,8 @@ import cv2
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 
-import sys, os
+import sys
+import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from ai_engine.gesture_detector import detect_hands, create_detector
